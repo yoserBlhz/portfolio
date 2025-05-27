@@ -11,9 +11,10 @@ interface ProjectCardProps {
   githubLink: string;
   videoLink?: string; // Optional video link
   type: string;
+  languages: string[];
 }
 
-export default function ProjectCard({ title, description, image, githubLink, videoLink, type }: ProjectCardProps) {
+export default function ProjectCard({ title, description, image, githubLink, videoLink, type, languages }: ProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -35,6 +36,20 @@ export default function ProjectCard({ title, description, image, githubLink, vid
       <div className="p-6">
         <h3 className="text-xl font-cyber mb-2 cyber-text">{title}</h3>
         <p className="text-gray-400 mb-4">{description}</p>
+        
+        <div className="mb-4">
+          <p className="text-cyber-green mb-2">Languages & Technologies:</p>
+          <div className="flex flex-wrap gap-2">
+            {languages.map((language, index) => (
+              <span 
+                key={index}
+                className="px-2 py-1 text-sm cyber-border text-gray-400"
+              >
+                {language}
+              </span>
+            ))}
+          </div>
+        </div>
         
         <div className="flex space-x-4">
           <a

@@ -15,13 +15,19 @@ const educationItems = [
   {
     title: "Software Engineering Student",
     subtitle: "Faculty of Science, Bizerta",
-    description: "Focus: DataScience and Software Engineering",
-    date: "2024-Present"
+    description: "I am currently pursuing a degree in Software Engineering with a focus on development, data science,cloud, machine learning, deep learning, and cybersecurity. My academic path has allowed me to build a strong technical foundation while exploring how to create intelligent, secure, and scalable applications.",
+    date: "2023-Present"
   },
   {
-    title: "Bachelor Degree ",
+    title: "Preparatory Classes for Engineering Studies",
+    subtitle: "Faculty of Science, Bizerta",
+    description: "Completed intensive coursework in mathematics, physics, and computer science. Developed strong problem-solving skills, discipline, and a solid technical foundation",
+    date: "2021-2023"
+  },
+  {
+    title: "Baccalaureate in Science (High School Diploma)",
     subtitle: "Mahmoud Messadi, Nabeul",
-    description: "Section: Science",
+    description: "Completed secondary education with a specialization in scientific studies.Gained foundational knowledge in mathematics, biology, physics, and chemistry, sparking a deep interest in technology and engineering.",
     date: "2020-2021"
   }
 ];
@@ -44,10 +50,11 @@ const experienceItems = [
 const projects = [
   {
     title: "Islamic App ",
-    description: "I developed a comprehensive Islamic mobile application using Flutter for the frontend and NestJS for the backend. This app is designed to enhance the spiritual journey of users by providing essential Islamic tools and resources, including: ✅ Prayer Times ✅ Customized Tasbih Counter ✅ Islamic Video Feed ✅ Dua Collection This project showcases my expertise in mobile development, backend API integration, and user-centric design to create an intuitive and feature-rich Islamic application.",
+    description: "I developed a comprehensive Islamic mobile application with a Flutter-based frontend and a NestJS-powered backend. The app is designed to support users in their spiritual journey by offering essential features such as accurate prayer times, a customizable Tasbih counter, an Islamic video feed, and a curated collection of Duas. This project highlights my skills in cross-platform mobile development, backend API integration, and designing user-focused, intuitive experiences tailored to meet specific community needs.",
     image: "/images/islamicApp.png",
     githubLink: "https://github.com/yoserBlhz/islamic_app",
-    type: "Mobile Development"
+    type: "Mobile Development",
+    languages: ["Flutter", "Dart", "NestJS", "TypeScript"]
   },
   {
     title: "Client Site For A Delivery Service",
@@ -55,7 +62,8 @@ const projects = [
     image: "/images/clientSite.png",
     githubLink: "https://github.com/yoserBlhz/clientWebsite",
     videoLink: "https://youtu.be/r3MGOszfYek",
-    type: "Web Development"
+    type: "Web Development",
+    languages: ["Angular", "JavaScript", "HTML", "CSS", "NestJs"]
   },
   {
     title: "Admin Dashboard For A Delivery Service",
@@ -63,22 +71,25 @@ const projects = [
     image: "/images/Dashboard.png",
     githubLink: "https://github.com/yoserBlhz/adminDeliveryDashboard",
     videoLink: "https://www.youtube.com/watch?v=3lR5b6Q7He8",
-    type: "Web Development"
+    type: "Web Development",
+    languages: ["Angular", "TypeScript", "NestJs", "Express", "MongoDB"]
   },
   {
     title: " Mobile Application for delivery personnel ",
     description: " This app empowers delivery agents to manage their deliveries, update the status of parcels, and includes an automated SMS feature that alerts clients when the delivery is en route.",
     image: "/images/mobile.png",
     githubLink: "https://github.com/yoserBlhz/delivery-frontend",
-    type: "Mobile Development"
+    type: "Mobile Development",
+    languages: ["Flutter","NestJS", "Dart", "MongoDB"]
   },
   {
     title: "Smart House Monitoring",
-    description: "An innovative Smart House Monitoring Web Application using Angular, Node.js, Express, and MongoDB. The application offers: ✅ Room Management: seamlessly add, edit, and monitor rooms. ✅ User Management: Admins can add users who can then log in using their name and unique house code. ✅ Interactive Dashboard: Real-time monitoring of smart home activities for enhanced convenience and control.",
+    description: "I developed an innovative Smart House Monitoring web application utilizing Angular for the frontend and Node.js, Express, and MongoDB for the backend. The application enables efficient room and user management, allowing administrators to add users who can log in using a unique house code. It features an interactive dashboard that provides real-time insights into smart home activities, enhancing control, convenience, and user experience. This project demonstrates my ability to build full-stack, data-driven applications with real-time capabilities and scalable architecture.",
     image: "/images/smartHouse.png",
     githubLink: "https://github.com/yoserBlhz/SmartHouseProject",
     videoLink: "https://www.youtube.com/watch?v=62PnCx1JtUE",
-    type: "Web Development"
+    type: "Web Development",
+    languages: ["Angular", "TypeScript", "Node.js", "Express", "MongoDB"]
   },
 ];
 
@@ -177,6 +188,7 @@ const volunteeringExperiences = [
 export default function Home() {
   const [selectedType, setSelectedType] = useState("All");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('education');
 
   const filteredProjects = selectedType === "All" 
     ? projects 
@@ -291,19 +303,19 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="py-20">
-        <div className="flex items-center gap-12">
-          <div className="w-1/3">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          <div className="w-full lg:w-1/3 order-2 lg:order-1">
             <img
               src="/images/me.png"
               alt="Benlehzil Yosr"
               className="w-full h-auto rounded-lg cyber-border"
             />
           </div>
-          <div className="w-2/3">
+          <div className="w-full lg:w-2/3 order-1 lg:order-2">
             <h2 className="text-3xl font-cyber mb-6 cyber-text flex items-center">
               <FaShieldAlt className="mr-2" /> About Me
             </h2>
-            <p className="mb-6">
+            <p className="mb-6 text-gray-400">
               I am a passionate software developer with a strong interest in cybersecurity, particularly in cloud computing 
               and red teaming. I enjoy exploring the offensive side of security to better understand system vulnerabilities 
               and how to defend against them. My curiosity drives me to continuously learn and experiment with new tools, 
@@ -333,10 +345,81 @@ export default function Home() {
 
       {/* Education & Experience Section */}
       <section id="education-experience" className="py-20">
-        <EducationExperience 
-          educationItems={educationItems}
-          experienceItems={experienceItems}
-        />
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Left side - Toggle buttons */}
+          <div className="w-full lg:w-1/4">
+            <div className="sticky top-24 space-y-4">
+              <button
+                onClick={() => setActiveTab('education')}
+                className={`w-full cyber-border p-4 flex items-center space-x-3 transition-colors ${
+                  activeTab === 'education'
+                    ? 'bg-cyber-green text-cyber-black'
+                    : 'hover:bg-cyber-dark'
+                }`}
+              >
+                <FaGraduationCap className="text-xl" />
+                <span>Education</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('experience')}
+                className={`w-full cyber-border p-4 flex items-center space-x-3 transition-colors ${
+                  activeTab === 'experience'
+                    ? 'bg-cyber-green text-cyber-black'
+                    : 'hover:bg-cyber-dark'
+                }`}
+              >
+                <FaBriefcase className="text-xl" />
+                <span>Experience</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Right side - Content */}
+          <div className="w-full lg:w-3/4">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h2 className="text-3xl font-cyber mb-6 cyber-text flex items-center">
+                {activeTab === 'education' ? (
+                  <>
+                    <FaGraduationCap className="mr-2" /> Education
+                  </>
+                ) : (
+                  <>
+                    <FaBriefcase className="mr-2" /> Experience
+                  </>
+                )}
+              </h2>
+              <div className="relative">
+                {/* Vertical line */}
+                <div className="absolute left-4 top-0 h-full w-0.5 bg-cyber-green"></div>
+                
+                {(activeTab === 'education' ? educationItems : experienceItems).map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    className="relative pl-12 pb-8"
+                  >
+                    {/* Dot */}
+                    <div className="absolute left-3 top-1 w-3 h-3 rounded-full bg-cyber-green"></div>
+                    
+                    <div className="cyber-border p-4">
+                      <h3 className="text-xl font-cyber mb-2 cyber-text">{item.title}</h3>
+                      <p className="text-cyber-green mb-2">{item.subtitle}</p>
+                      <p className="text-sm text-cyber-green mb-2">{item.date}</p>
+                      <p className="text-gray-400">{item.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Projects Section */}
@@ -412,7 +495,19 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {blogPosts.map((post, index) => (
-            <BlogCard key={index} {...post} />
+            <div key={index} className="cyber-border p-6">
+              <h3 className="text-xl font-cyber cyber-text mb-2">{post.title}</h3>
+              <p className="text-sm text-cyber-green mb-4">{post.date}</p>
+              <p className="text-gray-400 mb-4">{post.excerpt}</p>
+              <a
+                href={post.mediumLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyber-green hover:text-cyber-blue transition-colors"
+              >
+                Read on Medium →
+              </a>
+            </div>
           ))}
         </div>
       </section>
